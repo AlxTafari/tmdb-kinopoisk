@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Session notes
+LOG.md
+QA.md
+CLAUDE.md
+TMDB_ROADMAP.md
+Practical.md
+
+
+# env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
