@@ -1,4 +1,4 @@
-import { Routing } from '@/common/components/Routing/Routing'
+import { Routing } from '@/app/Routing/Routing'
 
 function App() {
   return <Routing />
