@@ -1,5 +1,8 @@
 import styles from './Filtered.module.css'
+import {FilterMovies} from "@/features/filter-movies/ui/FilterMovies.tsx";
 
 export function Filtered() {
-  return <h1 className={styles.title}>Filtered</h1>
+  return <div className={styles.title}>Filtered
+      <FilterMovies />
+  </div>
 }

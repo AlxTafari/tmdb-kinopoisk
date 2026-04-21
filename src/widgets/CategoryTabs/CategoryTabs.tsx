@@ -21,4 +21,4 @@ export const CategoryTabs = ({activeCategory, onCategoryChange}: Props) => {
             ))}
         </div>
     );
-};
+}; 

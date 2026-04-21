@@ -17,6 +17,7 @@ export function Category() {
         { category: category ?? 'popular', page: currentPage},
         { skip: !category }
     )
+    console.log(data)
 
 
     const totalPages = data?.total_pages
@@ -40,7 +41,7 @@ export function Category() {
             </div>
 
             <h2>{category}</h2>
-g
+
             <div className={styles.grid}>
                 {data?.results.slice(0, pageSize).map(movie => (
                     <MovieCard key={movie.id} movie={movie} />
