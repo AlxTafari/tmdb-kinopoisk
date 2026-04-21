@@ -45,6 +45,8 @@ export const FilterMovies = () => {
         'vote_average.asc': 'Rating ↑',
         'release_date.desc': 'Release Date ↓',
         'release_date.asc': 'Release Date ↑',
+        'original_title.asc': 'Title A → Z',
+        'original_title.desc': 'Title Z → A',
     }
 
     return (

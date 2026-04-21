@@ -9,6 +9,8 @@ export const SORT_BY = {
     VoteAsc: 'vote_average.asc',
     ReleaseDateDesc: 'release_date.desc',
     ReleaseDateAsc: 'release_date.asc',
+    TitleAsc: 'original_title.asc',
+    TitleDesc: 'original_title.desc',
 } as const
 
 export type SortBy = typeof SORT_BY[keyof typeof SORT_BY]
