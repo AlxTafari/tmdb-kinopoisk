@@ -4,6 +4,27 @@
     gap: 24px;
 }
 
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sortSelect {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.sortSelect:focus {
+    border-color: #01b4e4;
+}
+
 .genreList {
     display: flex;
     flex-wrap: wrap;

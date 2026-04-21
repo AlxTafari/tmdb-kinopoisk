@@ -2,7 +2,16 @@ import {baseApi} from "@/app/baseApi.ts";
 import {type MoviesList, MoviesListSchema} from "@/entities/movie/movieSchema.ts";
 import {type GenresList, GenresListSchema} from "@/features/filter-movies/api/genreSchema.ts";
 
-export type SortBy = 'popularity.desc' | 'popularity.asc' | 'vote_average.desc' | 'vote_average.asc' | 'release_date.desc' | 'release_date.asc'
+export const SORT_BY = {
+    PopularityDesc: 'popularity.desc',
+    PopularityAsc: 'popularity.asc',
+    VoteDesc: 'vote_average.desc',
+    VoteAsc: 'vote_average.asc',
+    ReleaseDateDesc: 'release_date.desc',
+    ReleaseDateAsc: 'release_date.asc',
+} as const
+
+export type SortBy = typeof SORT_BY[keyof typeof SORT_BY]
 
 type DiscoverParams = {
     sort_by: SortBy
@@ -11,6 +20,8 @@ type DiscoverParams = {
     'vote_average.lte'?: number
     page: number
 }
+
+
 
 export const discoverApi = baseApi.injectEndpoints({
     endpoints: build => ({
