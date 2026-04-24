@@ -1,5 +1,5 @@
 import {useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {type SortBy, useGetGenresMoviesQuery} from "@/features/filter-movies/api/discoverApi.ts";
 
 
@@ -26,9 +26,14 @@ export const useFilters = () => {
         'vote_average.lte': ratingLte,
         page,
     }
+    const isFirstRender = useRef(true)
 
     // Debounce для слайлера: локальный стейт → URL
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false
+            return  // при mount — ничего не делаем
+        }
         const timer = setTimeout(() => {
             setSearchParams(prev => {
                 const next = new URLSearchParams(prev)
@@ -40,7 +45,9 @@ export const useFilters = () => {
         }, 300)
 
         return () => clearTimeout(timer)
-    }, [rating, setSearchParams])
+    // setSearchParams стабилен (useCallback внутри React Router) — добавление в deps вызывает баг сброса страницы
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [rating])
 
     const resetFilters = () => {
         setRating([0, 10])
@@ -67,7 +74,14 @@ export const useFilters = () => {
         })
     }
 
-    return {apiFilters, sortBy, setSortBy, genres, page, selectedGenres,
+    const setPage = (p: number) => {
+        setSearchParams(prev => {
+            prev.set('page', String(p))
+            return prev
+        })
+    }
+
+    return {apiFilters, sortBy, setSortBy, genres, page, setPage, selectedGenres,
         ratingGte, ratingLte, rating, setRating, toggleGenre,
         resetFilters, genresData }
 }
