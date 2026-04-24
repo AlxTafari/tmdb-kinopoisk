@@ -23,6 +23,17 @@ type DiscoverParams = {
     page: number
 }
 
+export const SORT_BY_LABELS: Record<SortBy, string> = {
+    'popularity.desc': 'Popularity ↓',
+    'popularity.asc': 'Popularity ↑',
+    'vote_average.desc': 'Rating ↓',
+    'vote_average.asc': 'Rating ↑',
+    'release_date.desc': 'Release Date ↓',
+    'release_date.asc': 'Release Date ↑',
+    'original_title.asc': 'Title A → Z',
+    'original_title.desc': 'Title Z → A',
+}
+
 
 
 export const discoverApi = baseApi.injectEndpoints({
