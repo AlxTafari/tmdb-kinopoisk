@@ -2,7 +2,7 @@ import {useSearchMovieQuery} from "@/features/movies/api/moviesApi.ts";
 import {useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {MovieCard} from "@/entities/movie/ui/MovieCard/MovieCard.tsx";
-import styles from './Search.module.css'
+import styles from './Search.module.scss'
 import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 
 

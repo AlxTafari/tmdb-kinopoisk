@@ -1,4 +1,4 @@
-import styles from './Category.module.css'
+import styles from './Category.module.scss'
 import {CategoryTabs} from "@/widgets/CategoryTabs/CategoryTabs.tsx";
 import {type Category, useGetMoviesByCategoryQuery} from "@/features/movies/api/moviesApi.ts";
 import {useNavigate, useParams} from "react-router-dom";

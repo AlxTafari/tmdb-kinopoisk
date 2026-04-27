@@ -1,6 +1,6 @@
 import type {Category} from "@/features/movies/api/moviesApi.ts";
 import {CATEGORIES} from "@/shared/constants/categories.ts";
-import styles from './CategoryTabs.module.css';
+import styles from './CategoryTabs.module.scss';
 
 type Props = {
     activeCategory: Category;

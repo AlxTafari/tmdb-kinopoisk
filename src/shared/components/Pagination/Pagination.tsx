@@ -1,4 +1,4 @@
-import s from './Pagination.module.css'
+import s from './Pagination.module.scss'
 import {getPaginationPages} from "@/shared/utils";
 
 type Props = {

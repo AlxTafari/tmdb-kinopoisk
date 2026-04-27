@@ -2,7 +2,7 @@ import {
     SORT_BY, SORT_BY_LABELS,
     useGetFilterMoviesQuery,
 } from "@/features/filter-movies/api/discoverApi.ts";
-import styles from './FilterMovies.module.css'
+import styles from './FilterMovies.module.scss'
 import {MovieCard} from "@/entities/movie/ui/MovieCard/MovieCard.tsx";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css'

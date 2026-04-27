@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  padding: $space-lg 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px $space-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  transition: border-color $transition-fast;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: $color-accent;
+  }
+}
+
+.grid {
+  @extend %movie-grid;
+}
+
+.empty {
+  color: $color-text-muted;
+  font-size: 15px;
+}

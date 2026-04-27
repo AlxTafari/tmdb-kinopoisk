@@ -1,6 +1,6 @@
 import { WelcomeSection } from '@/widgets/WelcomeSection/WelcomeSection'
 import { MoviesRow } from '@/widgets/MoviesRow/MoviesRow'
-import styles from './Home.module.css'
+import styles from './Home.module.scss'
 import {CATEGORIES} from "@/shared/constants/categories.ts";
 
 export function Home() {

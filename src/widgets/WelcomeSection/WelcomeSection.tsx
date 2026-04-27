@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetMoviesByCategoryQuery } from '@/features/movies/api/moviesApi'
 import { TMDB_BACKDROP_BASE_URL } from '@/shared/constants/tmdb'
 import { Path } from '@/shared/constants/paths'
-import styles from './WelcomeSection.module.css'
+import styles from './WelcomeSection.module.scss'
 
 export function WelcomeSection() {
   const [query, setQuery] = useState('')

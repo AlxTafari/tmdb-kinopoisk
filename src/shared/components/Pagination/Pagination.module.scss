@@ -1,14 +1,14 @@
 .container {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    margin: 0 auto;
-    gap: 40px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 40px;
 }
 
 .pagination {
   display: flex;
-  gap: 8px;
+  gap: $space-xs;
   justify-content: center;
 }
 
@@ -16,7 +16,7 @@
   padding: 4px 10px;
   background: white;
   border: 1px solid #aaa;
-  border-radius: 4px;
+  border-radius: $radius-sm;
   cursor: pointer;
 }
 
@@ -27,6 +27,6 @@
 
 .ellipsis {
   padding: 4px 10px;
-  color: #888;
+  color: $color-text-muted;
   user-select: none;
 }

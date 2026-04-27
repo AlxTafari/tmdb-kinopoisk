@@ -1,0 +1,57 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.sortSelect {
+  padding: $space-xs $space-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    border-color: $color-accent;
+  }
+}
+
+.genreList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xs;
+}
+
+.genreButton {
+  padding: 6px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background $transition-fast, border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+
+  &.active {
+    background: $color-accent;
+    border-color: $color-accent;
+    color: #fff;
+  }
+}
+
+.grid {
+  @extend %movie-grid;
+}

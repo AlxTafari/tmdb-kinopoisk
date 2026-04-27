@@ -1,0 +1,16 @@
+.tabs {
+  display: flex;
+  gap: $space-xs;
+}
+
+.tab {
+  padding: $space-xs $space-md;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  background: transparent;
+}
+
+.active {
+  font-weight: bold;
+}

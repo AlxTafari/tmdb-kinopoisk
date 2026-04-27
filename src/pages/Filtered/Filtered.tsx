@@ -1,4 +1,4 @@
-import styles from './Filtered.module.css'
+import styles from './Filtered.module.scss'
 import {FilterMovies} from "@/features/filter-movies/ui/FilterMovies.tsx";
 
 export function Filtered() {

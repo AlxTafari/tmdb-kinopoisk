@@ -2,9 +2,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: $radius-md;
   overflow: hidden;
-  background: #1c1c1c;
+  background: $color-card-bg;
 }
 
 .link {
@@ -20,14 +20,19 @@
   aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
+  transition: transform $transition-slow;
+}
+
+.card:hover .poster {
+  transform: scale(1.05);
 }
 
 .info {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 8px;
-  padding: 8px;
+  gap: $space-xs;
+  padding: $space-xs;
 }
 
 .title {
@@ -40,18 +45,18 @@
   font-size: 0.8rem;
   font-weight: 700;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: $radius-sm;
   color: #fff;
 }
 
-.ratingGreen  { background: #21a453; }
-.ratingYellow { background: #e6a817; }
-.ratingRed    { background: #d9534f; }
+.ratingGreen  { background: $color-rating-green; }
+.ratingYellow { background: $color-rating-yellow; }
+.ratingRed    { background: $color-rating-red; }
 
 .favorite {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: $space-xs;
+  right: $space-xs;
   background: rgba(0, 0, 0, 0.55);
   border: none;
   border-radius: 50%;
@@ -62,4 +67,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color $transition-base;
+  color: #fff;
+}
+
+.favoriteActive {
+  color: $color-favorite-active;
 }

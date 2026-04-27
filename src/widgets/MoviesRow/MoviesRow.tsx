@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import { MovieCard } from '@/entities/movie/ui/MovieCard/MovieCard'
-import { useGetMoviesByCategoryQuery } from '@/features/movies/api/moviesApi'
-import type { Category } from '@/features/movies/api/moviesApi'
-import styles from './MoviesRow.module.css'
+import {Link} from 'react-router-dom'
+import {MovieCard} from '@/entities/movie/ui/MovieCard/MovieCard'
+import type {Category} from '@/features/movies/api/moviesApi'
+import {useGetMoviesByCategoryQuery} from '@/features/movies/api/moviesApi'
+import styles from './MoviesRow.module.scss'
 
 type MoviesRowProps = {
   title: string
