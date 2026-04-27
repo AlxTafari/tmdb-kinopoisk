@@ -21,3 +21,4 @@ export const MoviesListSchema = z.object({
 
 export type Movie = z.infer<typeof MovieSchema>
 export type MoviesList = z.infer<typeof MoviesListSchema>
+export type CardMovie = Pick<Movie, 'id' | 'title' | 'poster_path' | 'vote_average'>
