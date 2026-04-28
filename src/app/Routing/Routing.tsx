@@ -7,6 +7,7 @@ import {Filtered} from '@/pages/Filtered/Filtered'
 import {Search} from '@/pages/Search/Search'
 import {Favorites} from '@/pages/Favorites/Favorites'
 import {MovieDetail} from '@/pages/MovieDetail/MovieDetail'
+import {ActorDetail} from '@/pages/ActorDetail/ActorDetail'
 import {NotFound} from '@/pages/NotFound/NotFound'
 
 export function Routing() {
@@ -21,6 +22,7 @@ export function Routing() {
                 <Route path={Path.Search} element={<Search/>}/>
                 <Route path={Path.Favorites} element={<Favorites/>}/>
                 <Route path={Path.MovieDetail} element={<MovieDetail/>}/>
+                <Route path={Path.ActorDetail} element={<ActorDetail/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Route>
         </Routes>

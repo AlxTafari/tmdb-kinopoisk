@@ -6,4 +6,5 @@ export const Path = {
   Search: '/search',
   Favorites: '/favorites',
   MovieDetail: '/movie/:id',
+  ActorDetail: '/actor/:id',
 } as const

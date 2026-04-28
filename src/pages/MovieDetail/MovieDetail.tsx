@@ -1,4 +1,4 @@
-import {useNavigate, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import styles from './MovieDetail.module.scss'
 import {useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery} from '@/features/movies/api/movieDetailApi'
 import {TMDB_BACKDROP_BASE_URL, TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
@@ -80,7 +80,7 @@ export function MovieDetail() {
                     <h2 className={styles.sectionTitle}>Актёры</h2>
                     <div className={styles.castGrid}>
                         {topCast.map(actor => (
-                            <div key={actor.id} className={styles.castCard}>
+                            <Link key={actor.id} to={`/actor/${actor.id}`} className={styles.castCard}>
                                 <img
                                     src={actor.profile_path
                                         ? `${TMDB_IMAGE_BASE_URL}${actor.profile_path}`
@@ -90,7 +90,7 @@ export function MovieDetail() {
                                 />
                                 <p className={styles.castName}>{actor.name}</p>
                                 <p className={styles.castCharacter}>{actor.character}</p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>
