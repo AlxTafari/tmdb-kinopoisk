@@ -2,10 +2,10 @@
 $color-accent: #01b4e4;
 $color-bg-dark: #032541;
 
-// UI
-$color-card-bg: #1c1c1c;
-$color-border: #ccc;
-$color-text-muted: #888;
+// UI — указывают на CSS-переменные, меняются вместе с темой
+$color-card-bg: var(--color-surface);
+$color-border: var(--color-border);
+$color-text-muted: var(--color-text-muted);
 
 // Ratings
 $color-rating-green: #21a453;
