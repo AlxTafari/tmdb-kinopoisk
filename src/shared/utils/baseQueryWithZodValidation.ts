@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import type { ZodSchema } from 'zod'
 import type {
   BaseQueryFn,
@@ -24,13 +23,16 @@ export const baseQueryWithZodValidation =
     const { data } = returnValue
 
     if (data && zodSchema) {
-      try {
-        zodSchema.parse(data)
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          console.table(error.issues)
+      const parsed = zodSchema.safeParse(data)
+      if (!parsed.success) {
+        console.table(parsed.error.issues)
+        return {
+          error: {
+            status: 'CUSTOM_ERROR' as const,
+            error: 'ZOD_VALIDATION_ERROR',
+            data: parsed.error.issues,
+          },
         }
-        throw error
       }
     }
 
