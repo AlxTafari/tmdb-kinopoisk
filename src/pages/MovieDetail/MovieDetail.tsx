@@ -3,6 +3,7 @@ import styles from './MovieDetail.module.scss'
 import {useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery} from '@/features/movies/api/movieDetailApi'
 import {TMDB_BACKDROP_BASE_URL, TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
 import {MovieCard} from '@/entities/movie/ui/MovieCard/MovieCard'
+import {MovieDetailSkeleton} from './MovieDetailSkeleton'
 
 const POSTER_PLACEHOLDER = 'https://placehold.co/260x390?text=No+Image'
 const PHOTO_PLACEHOLDER = 'https://placehold.co/200x300?text=No+Photo'
@@ -24,10 +25,11 @@ export function MovieDetail() {
     const navigate = useNavigate()
     const movieId = Number(id)
 
-    const {data: movie} = useGetMovieDetailsQuery(movieId)
+    const {data: movie, isLoading} = useGetMovieDetailsQuery(movieId)
     const {data: credits} = useGetMovieCreditsQuery(movieId)
     const {data: similar} = useGetSimilarMoviesQuery(movieId)
 
+    if (isLoading) return <MovieDetailSkeleton />
     if (!movie) return null
 
     const posterUrl = movie.poster_path

@@ -3,6 +3,7 @@ import styles from './ActorDetail.module.scss'
 import {useGetActorDetailsQuery, useGetActorMovieCreditsQuery} from '@/features/actor-detail/api/actorApi'
 import {TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
 import {MovieCard} from '@/entities/movie/ui/MovieCard/MovieCard'
+import {ActorDetailSkeleton} from './ActorDetailSkeleton'
 
 const PHOTO_PLACEHOLDER = 'https://placehold.co/240x360?text=No+Photo'
 
@@ -11,9 +12,10 @@ export function ActorDetail() {
     const navigate = useNavigate()
     const actorId = Number(id)
 
-    const {data: actor} = useGetActorDetailsQuery(actorId)
+    const {data: actor, isLoading} = useGetActorDetailsQuery(actorId)
     const {data: credits} = useGetActorMovieCreditsQuery(actorId)
 
+    if (isLoading) return <ActorDetailSkeleton />
     if (!actor) return null
 
     const photoUrl = actor.profile_path

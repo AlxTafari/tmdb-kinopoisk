@@ -2,6 +2,7 @@ import {useSearchMovieQuery} from "@/features/movies/api/moviesApi.ts";
 import {useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {MovieCard} from "@/entities/movie/ui/MovieCard/MovieCard.tsx";
+import {MovieCardSkeleton} from "@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton.tsx";
 import styles from './Search.module.scss'
 import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 
@@ -51,13 +52,12 @@ export function Search() {
 
             {!isInSync && inputValue.trim() && <p>Searching...</p>}
 
-            {isInSync && inputValue.trim() && (isLoading || isFetching) ? (
-                <p>Loading...</p>
-            ) : isInSync && inputValue.trim() && (
+            {isInSync && inputValue.trim() && (
                 <div className={styles.grid}>
-                    {data?.results.slice(0, pageSize).map(movie => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
+                    {(isLoading || isFetching)
+                        ? Array.from({ length: pageSize }).map((_, i) => <MovieCardSkeleton key={i} />)
+                        : data?.results.slice(0, pageSize).map(movie => <MovieCard key={movie.id} movie={movie} />)
+                    }
                 </div>
             )}
 

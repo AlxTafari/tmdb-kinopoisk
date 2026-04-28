@@ -3,6 +3,7 @@ import {CategoryTabs} from "@/widgets/CategoryTabs/CategoryTabs.tsx";
 import {type Category, useGetMoviesByCategoryQuery} from "@/features/movies/api/moviesApi.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {MovieCard} from "@/entities/movie/ui/MovieCard/MovieCard.tsx";
+import {MovieCardSkeleton} from "@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton.tsx";
 import {useState} from "react";
 import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 
@@ -13,7 +14,7 @@ export function Category() {
 
     const { category } = useParams<{ category: Category }>()
     const navigate = useNavigate()
-    const { data } = useGetMoviesByCategoryQuery(
+    const { data, isLoading } = useGetMoviesByCategoryQuery(
         { category: category ?? 'popular', page: currentPage},
         { skip: !category }
     )
@@ -43,9 +44,10 @@ export function Category() {
             <h2>{category}</h2>
 
             <div className={styles.grid}>
-                {data?.results.slice(0, pageSize).map(movie => (
-                    <MovieCard key={movie.id} movie={movie} />
-                ))}
+                {isLoading
+                    ? Array.from({ length: pageSize }).map((_, i) => <MovieCardSkeleton key={i} />)
+                    : data?.results.slice(0, pageSize).map(movie => <MovieCard key={movie.id} movie={movie} />)
+                }
             </div>
             <Pagination
                 currentPage={currentPage}
