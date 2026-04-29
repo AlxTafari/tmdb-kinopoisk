@@ -29,3 +29,17 @@
     color: $color-accent;
   }
 }
+
+@media (max-width: $bp-md) {
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tab {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
