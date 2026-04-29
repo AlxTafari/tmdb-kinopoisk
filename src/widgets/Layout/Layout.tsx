@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import { ToastContainer } from 'react-toastify'
 import { Header } from '@/widgets/Header/Header'
@@ -11,6 +12,11 @@ import styles from './Layout.module.scss'
 export function Layout() {
   const theme = useAppSelector(state => state.theme.theme)
   const isDark = theme === 'dark'
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <SkeletonTheme
