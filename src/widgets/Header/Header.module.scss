@@ -1,9 +1,10 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: $z-sticky;
   height: 60px;
-  background-color: #032541;
+  background-color: $color-bg-dark;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .container {
@@ -23,16 +24,26 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: $space-md;
+  gap: $space-sm;
   flex: 1;
 }
 
 .link {
   text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  padding: 4px 2px;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 .active {
-  font-weight: 600;
+  color: $color-accent;
+  font-weight: $fw-semibold;
 }
 
 .themeToggle {
@@ -41,4 +52,16 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }

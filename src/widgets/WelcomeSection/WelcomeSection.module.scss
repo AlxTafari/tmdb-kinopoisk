@@ -16,7 +16,11 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(3, 37, 65, 0.85), rgba(3, 37, 65, 0.4));
+  background: linear-gradient(
+    to right,
+    var(--hero-overlay-start) 30%,
+    var(--hero-overlay-end)
+  );
 }
 
 .content {
@@ -27,14 +31,17 @@
   padding: 0 $space-lg;
 
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: 600;
     color: #fff;
     margin-bottom: $space-xs;
+    letter-spacing: 1px;
   }
 
   p {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 20px;
+    font-size: 1.05rem;
   }
 }
 
@@ -50,6 +57,12 @@
   border: none;
   font-size: 1rem;
   outline: none;
+  color: #111;
+  background: #fff;
+
+  &::placeholder {
+    color: #999;
+  }
 }
 
 .button {
@@ -60,6 +73,13 @@
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: $fw-semibold;
+  transition: opacity $transition-fast, transform $transition-fast;
+
+  &:hover:not(:disabled) {
+    opacity: 0.88;
+    transform: scale(1.02);
+  }
 
   &:disabled {
     opacity: 0.5;

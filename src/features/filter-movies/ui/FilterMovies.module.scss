@@ -1,43 +1,182 @@
+// ── Layout: float-sidebar + BFC-main ─────────────────────────────
+//
+// Нет общего wrapper для sidebar-элементов → CSS Grid растягивает строки
+// до высоты grid с фильмами. Float + BFC — корректное решение:
+//   - controls / slider / genreList: float: left (стакаются вертикально)
+//   - .grid: display:grid создаёт BFC — не перекрывается с float-элементами
+//   - pagination: clear: both — всегда ниже обеих колонок
+
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: $space-lg;
+  display: flow-root;
+  padding: $space-lg 0 $space-xl;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-  gap: $space-sm;
-}
+// ── Общие стили для карточек сайдбара ──────────────────────────
 
-.sortSelect {
-  padding: $space-xs $space-sm;
+@mixin sidebar-card {
+  float: left;
+  clear: left;
+  width: 260px;
+  margin-right: $space-xl;
+  margin-bottom: $space-lg;
+  padding: $space-md;
+  background: var(--color-surface);
   border: 1px solid $color-border;
   border-radius: $radius-md;
-  background: transparent;
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
-  transition: border-color $transition-fast;
+  box-sizing: border-box;
+}
 
-  &:focus {
+// ── Controls (сортировка + reset) ───────────────────────────────
+
+.controls {
+  @include sidebar-card;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  &::before {
+    content: 'Сортировка';
+    font-size: 0.72rem;
+    font-weight: $fw-semibold;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  select {
+    width: 100%;
+    padding: 8px $space-sm;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: border-color $transition-fast;
+
+    &:focus {
+      border-color: $color-accent;
+    }
+  }
+}
+
+// Reset-кнопка переиспользует .genreButton, но в контексте controls — другой стиль
+.controls .genreButton {
+  border-radius: $radius-sm;
+  padding: 6px $space-sm;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  background: transparent;
+  border: 1px solid $color-border;
+  cursor: pointer;
+  transition: color $transition-fast, border-color $transition-fast;
+  text-align: center;
+
+  &:hover {
+    color: $color-accent;
     border-color: $color-accent;
   }
 }
 
+// ── Slider (anonymous div — нет класса в TSX) ──────────────────
+
+.wrapper > :nth-child(2) {
+  @include sidebar-card;
+  position: relative;
+  padding-top: 60px;
+
+  &::before {
+    content: 'Рейтинг';
+    position: absolute;
+    top: $space-sm;
+    left: $space-md;
+    font-size: 0.72rem;
+    font-weight: $fw-semibold;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  :global {
+    .rc-slider-rail {
+      background-color: var(--color-border);
+      height: 4px;
+    }
+
+    .rc-slider-track {
+      background-color: $color-accent;
+      height: 4px;
+    }
+
+    .rc-slider-handle {
+      border-color: $color-accent;
+      opacity: 1;
+      width: 16px;
+      height: 16px;
+      margin-top: -6px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: $color-accent;
+        box-shadow: 0 0 0 5px rgba($color-accent, 0.18);
+      }
+
+      // Значение читается из aria-valuenow — rc-slider обновляет его при каждом движении
+      &::after {
+        content: attr(aria-valuenow);
+        position: absolute;
+        bottom: calc(100% + 7px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: $color-accent;
+        color: #fff;
+        font-family: var(--sans);
+        font-size: 0.68rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 3px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 10;
+      }
+    }
+  }
+}
+
+// ── Genre list ────────────────────────────────────────────────────
+
 .genreList {
+  @include sidebar-card;
   display: flex;
   flex-wrap: wrap;
   gap: $space-xs;
+  padding-top: 36px;
+  position: relative;
+
+  &::before {
+    content: 'Жанры';
+    position: absolute;
+    top: $space-sm;
+    left: $space-md;
+    font-size: 0.72rem;
+    font-weight: $fw-semibold;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
 }
 
 .genreButton {
-  padding: 6px 14px;
+  padding: 5px 12px;
   border: 1px solid $color-border;
   border-radius: $radius-pill;
   background: transparent;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.8rem;
   transition: background $transition-fast, border-color $transition-fast, color $transition-fast;
 
   &:hover {
@@ -52,6 +191,30 @@
   }
 }
 
+// ── Movie grid — display:grid создаёт BFC, обходит float-сайдбар ─
+
 .grid {
   @extend %movie-grid;
+}
+
+// ── Pagination — ниже обеих колонок ─────────────────────────────
+
+.wrapper > :nth-child(5) {
+  clear: both;
+}
+
+// ── Responsive ───────────────────────────────────────────────────
+
+@media (max-width: $bp-md) {
+  .controls,
+  .wrapper > :nth-child(2),
+  .genreList {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .wrapper > :nth-child(5) {
+    clear: none;
+  }
 }

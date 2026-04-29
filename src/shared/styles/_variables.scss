@@ -46,6 +46,21 @@ $bp-lg: 1024px;
 $bp-md: 768px;
 $bp-sm: 480px;
 
+// Shadows
+$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.2);
+$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+// Font weights
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Z-index
+$z-loader: 99;
+$z-sticky: 100;
+$z-modal: 200;
+
 // Shared placeholders
 %container {
   max-width: $container-max-width;

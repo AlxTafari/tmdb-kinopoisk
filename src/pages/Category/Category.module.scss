@@ -1,6 +1,10 @@
 .title {
+  padding-top: 100px;
+  margin-bottom: 50px;
 }
 
 .grid {
   @extend %movie-grid;
+  grid-template-columns: repeat(5, minmax($card-min-width, 1fr));
+  margin-bottom: $space-sm;
 }

@@ -10,7 +10,7 @@ import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 export function Category() {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(4);
+    const [pageSize, setPageSize] = useState(15);
 
     const { category } = useParams<{ category: Category }>()
     const navigate = useNavigate()
@@ -41,7 +41,7 @@ export function Category() {
                 <CategoryTabs activeCategory={category} onCategoryChange={onCategoryChange} />
             </div>
 
-            <h2>{category}</h2>
+            {/*<h2>{category}</h2>*/}
 
             <div className={styles.grid}>
                 {isLoading

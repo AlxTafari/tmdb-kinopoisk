@@ -16,7 +16,7 @@ export const FilterMovies = () => {
     // Один запрос — все параметры из URL
     const { data } = useGetFilterMoviesQuery(apiFilters)
 
-    const [pageSize, setPageSize] = useState(4);
+    const [pageSize, setPageSize] = useState(20);
     const changePageSizeHandler = (size: number) => {
         setPageSize(size)
         setPage(1)

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600&display=swap');
+
 :root {
   // Тёмная тема — дефолт
   --color-bg: #141414;
@@ -6,7 +8,12 @@
   --color-text: #e0e0e0;
   --color-text-muted: #888;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  // Hero overlay — в тёмной теме TMDB-синий тинт
+  --hero-overlay-start: rgba(3, 37, 65, 0.85);
+  --hero-overlay-end: rgba(3, 37, 65, 0.35);
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --display: 'Oswald', 'Inter', sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -28,4 +35,75 @@
   --color-border: #e0e0e0;
   --color-text: #111111;
   --color-text-muted: #666;
+
+  // В светлой теме нейтральный тёмный оверлей — натуральные цвета изображения
+  --hero-overlay-start: rgba(0, 0, 0, 0.42);
+  --hero-overlay-end: rgba(0, 0, 0, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+
+::selection {
+  background: rgba(1, 180, 228, 0.25);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid #01b4e4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
