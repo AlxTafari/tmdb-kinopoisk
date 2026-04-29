@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  padding: $space-xl 0 $space-lg;
+}
+
+.pagination {
+  display: flex;
+  gap: $space-xs;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pageButton {
+  padding: 5px 12px;
+  min-width: 36px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-sm;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  transition: background $transition-fast, border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}
+
+.pageButtonActive {
+  background: $color-accent;
+  border-color: $color-accent;
+  color: #fff;
+  cursor: default;
+  font-weight: $fw-semibold;
+
+  &:hover {
+    border-color: $color-accent;
+    color: #fff;
+  }
+}
+
+.ellipsis {
+  padding: 5px 10px;
+  color: $color-text-muted;
+  user-select: none;
+}
+
+// «Show X per page» label
+label {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  white-space: nowrap;
+
+  select {
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-sm;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: border-color $transition-fast;
+
+    &:focus {
+      border-color: $color-accent;
+    }
+  }
+}

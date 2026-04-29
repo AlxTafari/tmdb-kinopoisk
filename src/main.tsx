@@ -4,7 +4,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.ts'
 import App from './app/App.tsx'
-import './index.css'
+import './index.scss'
+import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

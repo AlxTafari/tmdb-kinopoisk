@@ -1,0 +1,35 @@
+.section {
+  padding: $space-lg 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-md;
+
+  h2 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+
+.viewMore {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: $color-accent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: $grid-gap;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

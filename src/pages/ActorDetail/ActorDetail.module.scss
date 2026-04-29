@@ -1,0 +1,92 @@
+.wrapper {
+  padding-bottom: $space-xl;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  background: none;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $space-xs $space-md;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: $space-lg 0;
+  transition: border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}
+
+.profile {
+  display: flex;
+  gap: 40px;
+  padding: $space-xl 0;
+}
+
+.photo {
+  width: 240px;
+  flex-shrink: 0;
+  border-radius: $radius-md;
+  object-fit: cover;
+  align-self: flex-start;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.name {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.department {
+  color: $color-accent;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  font-size: 0.9rem;
+  color: $color-text-muted;
+
+  span {
+    b {
+      color: inherit;
+      filter: brightness(1.6);
+    }
+  }
+}
+
+.biography {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0;
+}
+
+.section {
+  padding: $space-xl 0;
+  border-top: 1px solid $color-border;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 $space-lg;
+}
+
+.grid {
+  @extend %movie-grid;
+}

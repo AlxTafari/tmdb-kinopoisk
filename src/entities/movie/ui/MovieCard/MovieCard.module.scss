@@ -1,0 +1,89 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-card-bg;
+  box-shadow: $shadow-card;
+  transition: transform $transition-slow, box-shadow $transition-slow;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform $transition-slow;
+}
+
+.card:hover .poster {
+  transform: scale(1.05);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $space-xs;
+  padding: $space-xs;
+}
+
+.title {
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.rating {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: $fw-bold;
+  padding: 2px 6px;
+  border-radius: $radius-sm;
+  color: #fff;
+}
+
+.ratingGreen  { background: $color-rating-green; }
+.ratingYellow { background: $color-rating-yellow; }
+.ratingRed    { background: $color-rating-red; }
+
+.favorite {
+  position: absolute;
+  top: $space-xs;
+  right: $space-xs;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color $transition-base, background-color $transition-base, transform $transition-fast;
+  color: rgba(255, 255, 255, 0.85);
+
+  &:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.favoriteActive {
+  color: $color-favorite-active;
+}

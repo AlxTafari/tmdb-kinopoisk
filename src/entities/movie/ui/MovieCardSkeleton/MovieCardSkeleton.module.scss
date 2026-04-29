@@ -1,0 +1,18 @@
+.card {
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-card-bg;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $space-xs;
+  padding: $space-xs;
+}

@@ -1,0 +1,76 @@
+// Brand
+$color-accent: #01b4e4;
+$color-bg-dark: #032541;
+
+// UI — указывают на CSS-переменные, меняются вместе с темой
+$color-card-bg: var(--color-surface);
+$color-border: var(--color-border);
+$color-text-muted: var(--color-text-muted);
+
+// Ratings
+$color-rating-green: #21a453;
+$color-rating-yellow: #e6a817;
+$color-rating-red: #d9534f;
+
+// Favorites
+$color-favorite-active: #f5c518;
+
+// Layout
+$container-max-width: 1230px;
+$container-padding: 15px;
+
+// Grid
+$card-min-width: 160px;
+$grid-gap: 16px;
+
+// Spacing
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+// Border radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-pill: 20px;
+$radius-full: 32px;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// Breakpoints
+$bp-lg: 1024px;
+$bp-md: 768px;
+$bp-sm: 480px;
+
+// Shadows
+$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.2);
+$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+// Font weights
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Z-index
+$z-loader: 99;
+$z-sticky: 100;
+$z-modal: 200;
+
+// Shared placeholders
+%container {
+  max-width: $container-max-width;
+  width: 100%;
+  padding: 0 $container-padding;
+  margin: 0 auto;
+}
+
+%movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($card-min-width, 1fr));
+  gap: $grid-gap;
+}

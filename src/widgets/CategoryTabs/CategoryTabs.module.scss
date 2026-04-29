@@ -1,0 +1,31 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: $space-xs;
+}
+
+.tab {
+  padding: $space-xs $space-md;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  transition: color $transition-fast, border-color $transition-fast, background-color $transition-fast;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.active {
+  color: $color-accent;
+  font-weight: $fw-semibold;
+  border-color: rgba($color-accent, 0.3);
+  background-color: rgba($color-accent, 0.08);
+
+  &:hover {
+    color: $color-accent;
+  }
+}
