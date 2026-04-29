@@ -90,3 +90,61 @@
 .grid {
   @extend %movie-grid;
 }
+
+// ── Responsive ────────────────────────────────────────────────────
+
+@media (max-width: $bp-md) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $space-lg 0;
+    gap: $space-lg;
+  }
+
+  .photo {
+    width: 180px;
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .meta {
+    align-items: center;
+  }
+
+  .biography {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: $grid-gap;
+    padding-bottom: $space-sm;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      flex: 0 0 140px;
+      scroll-snap-align: start;
+    }
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .photo {
+    width: 150px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+}

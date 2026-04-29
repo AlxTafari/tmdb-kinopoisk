@@ -1,34 +1,44 @@
-// ── Layout: float-sidebar + BFC-main ─────────────────────────────
-//
-// Нет общего wrapper для sidebar-элементов → CSS Grid растягивает строки
-// до высоты grid с фильмами. Float + BFC — корректное решение:
-//   - controls / slider / genreList: float: left (стакаются вертикально)
-//   - .grid: display:grid создаёт BFC — не перекрывается с float-элементами
-//   - pagination: clear: both — всегда ниже обеих колонок
+// ── Desktop: 2-column grid (sidebar | main) ──────────────────────
 
 .wrapper {
-  display: flow-root;
+  display: grid;
+  grid-template-areas:
+    'toggle toggle'
+    'sidebar main';
+  grid-template-columns: 260px 1fr;
+  column-gap: $space-xl;
   padding: $space-lg 0 $space-xl;
+  align-items: start;
 }
 
-// ── Общие стили для карточек сайдбара ──────────────────────────
+.filterToggle {
+  grid-area: toggle;
+  display: none;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.main {
+  grid-area: main;
+}
+
+// ── Sidebar card mixin ────────────────────────────────────────────
 
 @mixin sidebar-card {
-  float: left;
-  clear: left;
-  width: 260px;
-  margin-right: $space-xl;
-  margin-bottom: $space-lg;
   padding: $space-md;
   background: var(--color-surface);
   border: 1px solid $color-border;
   border-radius: $radius-md;
-  box-sizing: border-box;
 }
 
-// ── Controls (сортировка + reset) ───────────────────────────────
+// ── Controls (сортировка + reset) ────────────────────────────────
 
-.controls {
+.controlsCard {
   @include sidebar-card;
   display: flex;
   flex-direction: column;
@@ -62,8 +72,7 @@
   }
 }
 
-// Reset-кнопка переиспользует .genreButton, но в контексте controls — другой стиль
-.controls .genreButton {
+.resetButton {
   border-radius: $radius-sm;
   padding: 6px $space-sm;
   font-size: 0.85rem;
@@ -80,9 +89,9 @@
   }
 }
 
-// ── Slider (anonymous div — нет класса в TSX) ──────────────────
+// ── Slider card ───────────────────────────────────────────────────
 
-.wrapper > :nth-child(2) {
+.sliderCard {
   @include sidebar-card;
   position: relative;
   padding-top: 60px;
@@ -191,30 +200,51 @@
   }
 }
 
-// ── Movie grid — display:grid создаёт BFC, обходит float-сайдбар ─
+// ── Movie grid ────────────────────────────────────────────────────
 
 .grid {
   @extend %movie-grid;
+  margin-bottom: $space-sm;
 }
 
-// ── Pagination — ниже обеих колонок ─────────────────────────────
-
-.wrapper > :nth-child(5) {
-  clear: both;
-}
-
-// ── Responsive ───────────────────────────────────────────────────
+// ── Mobile accordion ─────────────────────────────────────────────
 
 @media (max-width: $bp-md) {
-  .controls,
-  .wrapper > :nth-child(2),
-  .genreList {
-    float: none;
-    width: 100%;
-    margin-right: 0;
+  .wrapper {
+    display: block;
+    padding: $space-md 0 $space-xl;
   }
 
-  .wrapper > :nth-child(5) {
-    clear: none;
+  .filterToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: $space-sm $space-md;
+    background: var(--color-surface);
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: $fw-medium;
+    color: var(--color-text);
+    margin-bottom: $space-md;
+    transition: border-color $transition-fast;
+
+    &:hover {
+      border-color: $color-accent;
+    }
+  }
+
+  .sidebar {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+    margin-bottom: 0;
+  }
+
+  .sidebarOpen {
+    max-height: 1600px;
+    margin-bottom: $space-md;
   }
 }
