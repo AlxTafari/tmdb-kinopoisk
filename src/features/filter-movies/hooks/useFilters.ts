@@ -27,12 +27,17 @@ export const useFilters = () => {
         page,
     }
     const isFirstRender = useRef(true)
+    const isReset = useRef(false)
 
     // Debounce для слайлера: локальный стейт → URL
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false
             return  // при mount — ничего не делаем
+        }
+        if (isReset.current) {
+            isReset.current = false
+            return
         }
         const timer = setTimeout(() => {
             setSearchParams(prev => {
@@ -50,6 +55,7 @@ export const useFilters = () => {
     }, [rating])
 
     const resetFilters = () => {
+        isReset.current = true
         setRating([0, 10])
         setSearchParams({})
     }
