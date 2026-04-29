@@ -4,6 +4,7 @@ import {TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
 import styles from './MovieCard.module.scss'
 import {useAppDispatch, useAppSelector} from "@/shared/hooks";
 import {addFavorite, removeFavorite} from "@/features/favorites/favoritesSlice/favoritesSlice.ts";
+import {HeartIcon} from "@/shared/components/icons/HeartIcon";
 
 type MovieCardProps = {
     movie: CardMovie
@@ -43,7 +44,9 @@ export function MovieCard({movie}: MovieCardProps) {
                 className={`${styles.favorite} ${isFavorite ? styles.favoriteActive : ''}`}
                 aria-label="Add to favorites"
                 onClick={handleFavorite}
-            >❤</button>
+            >
+                <HeartIcon />
+            </button>
         </article>
     )
 }
