@@ -58,7 +58,8 @@
   font-size: 1rem;
   outline: none;
   color: #111;
-  background: #717171;
+  background: #fff;
+  opacity: 0.78;
 
   &::placeholder {
     color: #999;
@@ -66,6 +67,7 @@
 
   &:focus {
     border-radius: $radius-full;
+    opacity: 100%;
 
   }
 }
