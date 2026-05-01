@@ -9,7 +9,6 @@ import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 
 export function Search() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(16);
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -33,10 +32,6 @@ export function Search() {
     // запрос читает из URL, не из useState
     const { data, isLoading, isFetching } = useSearchMovieQuery({ query: queryFromUrl, page: currentPage }, { skip: !queryFromUrl })
     const totalPages = data?.total_pages
-    const changePageSizeHandler = (size: number) => {
-        setPageSize(size)
-        setCurrentPage(1)
-    }
 
     return (
         <div className={styles.wrapper}>
@@ -55,8 +50,8 @@ export function Search() {
             {isInSync && inputValue.trim() && (
                 <div className={styles.grid}>
                     {(isLoading || isFetching)
-                        ? Array.from({ length: pageSize }).map((_, i) => <MovieCardSkeleton key={i} />)
-                        : data?.results.slice(0, pageSize).map(movie => <MovieCard key={movie.id} movie={movie} />)
+                        ? Array.from({ length: 20 }).map((_, i) => <MovieCardSkeleton key={i} />)
+                        : data?.results.map(movie => <MovieCard key={movie.id} movie={movie} />)
                     }
                 </div>
             )}
@@ -68,9 +63,6 @@ export function Search() {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 pagesCount={totalPages ?? 1}
-                pageSize={pageSize}
-                changePageSize={changePageSizeHandler}
-
             />}
         </div>
     )

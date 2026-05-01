@@ -6,11 +6,11 @@ import {MovieCard} from "@/entities/movie/ui/MovieCard/MovieCard.tsx";
 import {MovieCardSkeleton} from "@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton.tsx";
 import {useState} from "react";
 import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
+import {CATEGORIES} from "@/shared/constants/categories.ts";
 
 export function Category() {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(15);
 
     const {category} = useParams<{ category: Category }>()
     const navigate = useNavigate()
@@ -18,24 +18,13 @@ export function Category() {
         {category: category ?? 'popular', page: currentPage},
         {skip: !category}
     )
-    console.log(data)
 
-    const catList = {
-        'popular': 'Popular',
-        'top_rated': 'Top Rated',
-        'upcoming': 'Upcoming',
-        'now_playing': 'Now Playing',
-    }
+    const title = CATEGORIES.find(c => c.key === category)?.label ?? category
 
     const totalPages = data?.total_pages
 
     const onCategoryChange = (category: Category) => {
         navigate(`/category/${category}`)
-        setCurrentPage(1)
-    }
-
-    const changePageSizeHandler = (size: number) => {
-        setPageSize(size)
         setCurrentPage(1)
     }
 
@@ -47,21 +36,18 @@ export function Category() {
                 <CategoryTabs activeCategory={category} onCategoryChange={onCategoryChange}/>
             </div>
 
-            <h2 className={styles.title}>{catList[category]}</h2>
+            <h2 className={styles.title}>{title}</h2>
 
             <div className={styles.grid}>
                 {isLoading
-                    ? Array.from({length: pageSize}).map((_, i) => <MovieCardSkeleton key={i}/>)
-                    : data?.results.slice(0, pageSize).map(movie => <MovieCard key={movie.id} movie={movie}/>)
+                    ? Array.from({length: 20}).map((_, i) => <MovieCardSkeleton key={i}/>)
+                    : data?.results.map(movie => <MovieCard key={movie.id} movie={movie}/>)
                 }
             </div>
             <Pagination
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 pagesCount={totalPages || 1}
-                pageSize={pageSize}
-                changePageSize={changePageSizeHandler}
-
             />
         </section>
 

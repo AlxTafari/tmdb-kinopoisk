@@ -15,13 +15,7 @@ export const FilterMovies = () => {
     const { apiFilters, rating, setRating, selectedGenres, toggleGenre, resetFilters, setSortBy, genresData, page, setPage } = useFilters()
     const { data, isLoading } = useGetFilterMoviesQuery(apiFilters)
 
-    const [pageSize, setPageSize] = useState(20);
     const [filtersOpen, setFiltersOpen] = useState(false);
-
-    const changePageSizeHandler = (size: number) => {
-        setPageSize(size)
-        setPage(1)
-    }
 
     const totalPages = data?.total_pages
 
@@ -76,8 +70,8 @@ export const FilterMovies = () => {
             <div className={styles.main}>
                 <div className={styles.grid}>
                     {isLoading
-                        ? Array.from({ length: pageSize }).map((_, i) => <MovieCardSkeleton key={i} />)
-                        : data?.results.slice(0, pageSize).map(movie => (
+                        ? Array.from({ length: 20 }).map((_, i) => <MovieCardSkeleton key={i} />)
+                        : data?.results.map(movie => (
                         <MovieCard key={movie.id} movie={movie}/>
                     ))}
                 </div>
@@ -85,8 +79,6 @@ export const FilterMovies = () => {
                     currentPage={page}
                     setCurrentPage={setPage}
                     pagesCount={totalPages ?? 1}
-                    pageSize={pageSize}
-                    changePageSize={changePageSizeHandler}
                 />
             </div>
         </div>
