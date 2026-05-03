@@ -13,11 +13,20 @@ export const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),
 })
 
+// store.subscribe fires on every dispatch, including RTK Query internals.
+// Compare references to avoid redundant localStorage writes.
+const prev = { favorites: store.getState().favorites, theme: store.getState().theme }
 store.subscribe(() => {
-    const { favorites, theme } = store.getState()
-    localStorage.setItem('favorites', JSON.stringify(favorites.movies))
-    localStorage.setItem('theme', theme.theme)
-    document.documentElement.setAttribute('data-theme', theme.theme)
+    const state = store.getState()
+    if (state.favorites !== prev.favorites) {
+        localStorage.setItem('favorites', JSON.stringify(state.favorites.movies))
+        prev.favorites = state.favorites
+    }
+    if (state.theme !== prev.theme) {
+        localStorage.setItem('theme', state.theme.theme)
+        document.documentElement.setAttribute('data-theme', state.theme.theme)
+        prev.theme = state.theme
+    }
 })
 
 export type RootState = ReturnType<typeof store.getState>

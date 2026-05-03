@@ -4,6 +4,7 @@ import {useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQue
 import {TMDB_BACKDROP_BASE_URL, TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
 import {MovieCard} from '@/entities/movie/ui/MovieCard/MovieCard'
 import {MovieDetailSkeleton} from './MovieDetailSkeleton'
+import {NotFound} from "@/pages/NotFound/NotFound.tsx";
 
 const POSTER_PLACEHOLDER = 'https://placehold.co/260x390?text=No+Image'
 const PHOTO_PLACEHOLDER = 'https://placehold.co/200x300?text=No+Photo'
@@ -24,11 +25,13 @@ export function MovieDetail() {
     const {id} = useParams()
     const navigate = useNavigate()
     const movieId = Number(id)
+    const isValidId = !!id && !isNaN(movieId)
 
-    const {data: movie, isLoading} = useGetMovieDetailsQuery(movieId)
-    const {data: credits} = useGetMovieCreditsQuery(movieId)
-    const {data: similar} = useGetSimilarMoviesQuery(movieId)
+    const {data: movie, isLoading} = useGetMovieDetailsQuery(movieId, { skip: !isValidId })
+    const {data: credits} = useGetMovieCreditsQuery(movieId, { skip: !isValidId })
+    const {data: similar} = useGetSimilarMoviesQuery(movieId, { skip: !isValidId })
 
+    if (!isValidId) return <NotFound />
     if (isLoading) return <MovieDetailSkeleton />
     if (!movie) return null
 

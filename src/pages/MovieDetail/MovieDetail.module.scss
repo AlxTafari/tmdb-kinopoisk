@@ -175,6 +175,12 @@
 
 // ── Responsive ────────────────────────────────────────────────────
 
+@media (max-width: 768px) {
+  .back {
+    display: none;
+  }
+}
+
 @media (max-width: $bp-md) {
   .overlay {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.92) 100%);

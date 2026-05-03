@@ -9,18 +9,13 @@ import 'rc-slider/assets/index.css'
 import {useFilters} from "@/features/filter-movies/hooks/useFilters.ts";
 import {Pagination} from "@/shared/components/Pagination/Pagination.tsx";
 import {useState} from "react";
+import {MovieCardSkeleton} from "@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton.tsx";
 
 export const FilterMovies = () => {
     const { apiFilters, rating, setRating, selectedGenres, toggleGenre, resetFilters, setSortBy, genresData, page, setPage } = useFilters()
-    const { data } = useGetFilterMoviesQuery(apiFilters)
+    const { data, isLoading } = useGetFilterMoviesQuery(apiFilters)
 
-    const [pageSize, setPageSize] = useState(20);
     const [filtersOpen, setFiltersOpen] = useState(false);
-
-    const changePageSizeHandler = (size: number) => {
-        setPageSize(size)
-        setPage(1)
-    }
 
     const totalPages = data?.total_pages
 
@@ -74,7 +69,9 @@ export const FilterMovies = () => {
 
             <div className={styles.main}>
                 <div className={styles.grid}>
-                    {data?.results.slice(0, pageSize).map(movie => (
+                    {isLoading
+                        ? Array.from({ length: 20 }).map((_, i) => <MovieCardSkeleton key={i} />)
+                        : data?.results.map(movie => (
                         <MovieCard key={movie.id} movie={movie}/>
                     ))}
                 </div>
@@ -82,8 +79,6 @@ export const FilterMovies = () => {
                     currentPage={page}
                     setCurrentPage={setPage}
                     pagesCount={totalPages ?? 1}
-                    pageSize={pageSize}
-                    changePageSize={changePageSizeHandler}
                 />
             </div>
         </div>

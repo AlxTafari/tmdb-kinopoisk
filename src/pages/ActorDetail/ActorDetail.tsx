@@ -4,6 +4,7 @@ import {useGetActorDetailsQuery, useGetActorMovieCreditsQuery} from '@/features/
 import {TMDB_IMAGE_BASE_URL} from '@/shared/constants/tmdb'
 import {MovieCard} from '@/entities/movie/ui/MovieCard/MovieCard'
 import {ActorDetailSkeleton} from './ActorDetailSkeleton'
+import {NotFound} from "@/pages/NotFound/NotFound.tsx";
 
 const PHOTO_PLACEHOLDER = 'https://placehold.co/240x360?text=No+Photo'
 
@@ -11,10 +12,12 @@ export function ActorDetail() {
     const {id} = useParams()
     const navigate = useNavigate()
     const actorId = Number(id)
+    const isValidId = !!id && !isNaN(actorId)
 
-    const {data: actor, isLoading} = useGetActorDetailsQuery(actorId)
-    const {data: credits} = useGetActorMovieCreditsQuery(actorId)
+    const {data: actor, isLoading} = useGetActorDetailsQuery(actorId, { skip: !isValidId })
+    const {data: credits} = useGetActorMovieCreditsQuery(actorId, { skip: !isValidId })
 
+    if (!isValidId) return <NotFound />
     if (isLoading) return <ActorDetailSkeleton />
     if (!actor) return null
 
