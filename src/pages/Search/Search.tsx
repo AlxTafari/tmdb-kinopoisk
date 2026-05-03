@@ -41,6 +41,7 @@ export function Search() {
                 placeholder="Search for a movie..."
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
+                autoFocus
             />
 
             {inputValue === "" && <h1>Enter a movie title to start searching</h1>}
