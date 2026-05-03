@@ -12,7 +12,7 @@ import {useState} from "react";
 import {MovieCardSkeleton} from "@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton.tsx";
 
 export const FilterMovies = () => {
-    const { apiFilters, rating, setRating, selectedGenres, toggleGenre, resetFilters, setSortBy, genresData, page, setPage } = useFilters()
+    const { apiFilters, rating, setRating, selectedGenres, toggleGenre, resetFilters, setSortBy, genresData, page, setPage, isFiltersDefault } = useFilters()
     const { data, isLoading } = useGetFilterMoviesQuery(apiFilters)
 
     const [filtersOpen, setFiltersOpen] = useState(false);
@@ -38,9 +38,6 @@ export const FilterMovies = () => {
                             </option>
                         ))}
                     </select>
-                    <button className={styles.resetButton} onClick={resetFilters}>
-                        Сбросить
-                    </button>
                 </div>
 
                 <div className={styles.sliderCard}>
@@ -65,6 +62,10 @@ export const FilterMovies = () => {
                         </button>
                     ))}
                 </div>
+
+                <button className={styles.resetButton} onClick={resetFilters} disabled={isFiltersDefault}>
+                    Сбросить
+                </button>
             </div>
 
             <div className={styles.main}>

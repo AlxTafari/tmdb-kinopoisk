@@ -87,7 +87,13 @@ export const useFilters = () => {
         })
     }
 
+    const isFiltersDefault =
+        sortBy === 'popularity.desc' &&
+        selectedGenres.length === 0 &&
+        ratingGte === 0 &&
+        ratingLte === 10
+
     return {apiFilters, sortBy, setSortBy, genres, page, setPage, selectedGenres,
         ratingGte, ratingLte, rating, setRating, toggleGenre,
-        resetFilters, genresData }
+        resetFilters, genresData, isFiltersDefault }
 }

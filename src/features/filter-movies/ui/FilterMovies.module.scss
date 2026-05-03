@@ -73,19 +73,24 @@
 }
 
 .resetButton {
+  width: 100%;
   border-radius: $radius-sm;
-  padding: 6px $space-sm;
-  font-size: 0.85rem;
-  color: $color-text-muted;
-  background: transparent;
-  border: 1px solid $color-border;
+  padding: 10px $space-sm;
+  font-size: 0.9rem;
+  font-weight: $fw-semibold;
+  color: #fff;
+  background: $color-accent;
+  border: none;
   cursor: pointer;
-  transition: color $transition-fast, border-color $transition-fast;
-  text-align: center;
+  transition: opacity $transition-fast;
 
-  &:hover {
-    color: $color-accent;
-    border-color: $color-accent;
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 }
 
