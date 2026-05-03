@@ -15,6 +15,7 @@ export function WelcomeSection() {
   const backdropUrl = useMemo(() => {
     const movies = data?.results.filter(m => m.backdrop_path) ?? []
     if (!movies.length) return undefined
+    // eslint-disable-next-line react-hooks/purity
     const random = movies[Math.floor(Math.random() * movies.length)]
     return `${TMDB_BACKDROP_BASE_URL}${random.backdrop_path}`
   }, [data])

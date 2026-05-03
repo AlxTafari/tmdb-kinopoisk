@@ -6,6 +6,10 @@
 
 .main {
   flex: 1;
+
+  @media (max-width: 425px) {
+    padding-bottom: 60px;
+  }
 }
 
 .container {
