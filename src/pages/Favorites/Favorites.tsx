@@ -4,7 +4,7 @@ import {FavoritesList} from "@/features/favorites/ui/FavoriteList.tsx";
 export function Favorites() {
 
     return (
-        <div>
+        <div className={styles.page}>
             <h2 className={styles.title}>Favorites</h2>
             <FavoritesList />
         </div>

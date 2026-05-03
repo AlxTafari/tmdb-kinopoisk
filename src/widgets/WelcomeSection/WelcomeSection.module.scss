@@ -8,9 +8,6 @@
   background-color: $color-bg-dark;
   background-size: cover;
   background-position: center;
-  // width: 100vw убирает зависимость от sub-pixel округления calc() — секция всегда точно по вьюпорту
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   margin-bottom: $space-xl;
 }
 

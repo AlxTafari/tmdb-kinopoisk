@@ -3,7 +3,7 @@ import {FilterMovies} from "@/features/filter-movies/ui/FilterMovies.tsx";
 
 export function Filtered() {
     return (
-        <div>
+        <div className={styles.page}>
             <h2 className={styles.title}>Filtered</h2>
             <FilterMovies/>
         </div>

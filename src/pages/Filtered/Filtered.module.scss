@@ -1,4 +1,7 @@
-// Wrapper вокруг FilterMovies — «Filtered» это текстовая нода внутри
+.page {
+  @extend %container;
+}
+
 .title {
   padding: $space-lg 0;
   font-size: 1.5rem;

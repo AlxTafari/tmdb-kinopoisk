@@ -28,11 +28,9 @@ export function Layout() {
         <Header />
         <GlobalLoader />
         <main className={styles.main}>
-          <div className={styles.container}>
-            <ErrorBoundary>
-              <Outlet />
-            </ErrorBoundary>
-          </div>
+          <ErrorBoundary>
+            <Outlet />
+          </ErrorBoundary>
         </main>
         <Footer />
         <MobileNav />

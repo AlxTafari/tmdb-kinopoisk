@@ -1,4 +1,5 @@
 .wrapper {
+  @extend %container;
   padding-bottom: $space-xl;
 }
 

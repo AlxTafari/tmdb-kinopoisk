@@ -31,7 +31,7 @@ export function Category() {
     if (!category) return <div>Категории куда-то пропали..</div>
 
     return (
-        <section>
+        <section className={styles.page}>
             <div className={styles.tabs}>
                 <CategoryTabs activeCategory={category} onCategoryChange={onCategoryChange}/>
             </div>

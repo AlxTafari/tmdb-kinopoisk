@@ -1,4 +1,5 @@
 .wrapper {
+  @extend %container;
   display: flex;
   flex-direction: column;
   gap: $space-lg;
