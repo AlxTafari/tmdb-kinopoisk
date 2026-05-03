@@ -126,7 +126,7 @@
 
 // ── Mobile layout ─────────────────────────────────────────────────
 
-@media (max-width: 425px) {
+@media (max-width: $bp-sm) {
   .burger,
   .nav {
     display: none !important;
