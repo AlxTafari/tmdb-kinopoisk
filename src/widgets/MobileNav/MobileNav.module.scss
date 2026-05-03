@@ -1,0 +1,38 @@
+.nav {
+  display: none;
+
+  @media (max-width: 425px) {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-sticky;
+    background-color: $color-bg-dark;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: $space-xs 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color $transition-fast;
+}
+
+.active {
+  color: $color-accent;
+}
+
+.label {
+  font-size: 0.65rem;
+  font-weight: $fw-medium;
+  letter-spacing: 0.03em;
+}
