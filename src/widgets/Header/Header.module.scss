@@ -46,23 +46,30 @@
   font-weight: $fw-semibold;
 }
 
-.themeToggle {
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
   margin-left: auto;
+  flex-shrink: 0;
+}
+
+.themeToggle {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  transition: background-color $transition-fast;
+  color: rgba(255, 255, 255, 0.8);
+  transition: background-color $transition-fast, color $transition-fast;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
   }
 }
 
@@ -119,14 +126,16 @@
 
 // ── Mobile layout ─────────────────────────────────────────────────
 
+@media (max-width: 425px) {
+  .burger,
+  .nav {
+    display: none !important;
+  }
+}
+
 @media (max-width: $bp-md) {
   .burger {
     display: flex;
-    margin-left: auto;
-  }
-
-  .themeToggle {
-    margin-left: 0;
   }
 
   .nav {
