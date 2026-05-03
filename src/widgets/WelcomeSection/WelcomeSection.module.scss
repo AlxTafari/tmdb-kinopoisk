@@ -1,5 +1,5 @@
 .section {
-  height: 100vh;
+  height: 100svh;
   position: relative;
   min-height: 400px;
   display: flex;
@@ -8,8 +8,9 @@
   background-color: $color-bg-dark;
   background-size: cover;
   background-position: center;
+  // width: 100vw убирает зависимость от sub-pixel округления calc() — секция всегда точно по вьюпорту
+  width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   margin-bottom: $space-xl;
 }
 
@@ -91,5 +92,32 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .content {
+    padding: 0 $space-md;
+    width: 100%;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .button {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
